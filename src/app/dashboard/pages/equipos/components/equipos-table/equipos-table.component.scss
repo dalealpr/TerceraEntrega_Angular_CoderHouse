@@ -1,0 +1,17 @@
+
+table {
+    width: 100%;
+    th{
+        font-size: 18px;
+        color: white;
+        background-color: var(--bg-primary);
+    }
+    tr{
+      font-size: 15px;
+    }
+  }
+
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

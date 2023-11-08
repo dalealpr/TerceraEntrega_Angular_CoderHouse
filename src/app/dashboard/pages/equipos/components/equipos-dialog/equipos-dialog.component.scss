@@ -1,0 +1,30 @@
+.dialogCont{
+    padding: 25px;
+
+    .btnDialog{
+        width: 120px;
+        height: 42px;
+        background-color: var(--primary);
+        color: black;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .inputCont{
+        margin-bottom: 15px;
+    }
+
+    .btnCont{
+        width: 96%;
+        display: flex;
+        justify-content: end;
+        gap: 20px;
+
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

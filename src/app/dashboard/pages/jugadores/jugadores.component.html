@@ -1,0 +1,14 @@
+<div class="contJugadores">
+  <h1 class="title">JUGADORES</h1>
+  <button class="btnAdd" (click)="addJugador()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Agregar Jugador
+  </button>
+
+  <app-jugadores-table
+    [dataSource]="(jugadores$ | async) || []"
+    (deleteJugador)="onDeleteJugador($event)"
+    (editJugador)="onEditJugador($event)"
+    class="tableComponent"
+  ></app-jugadores-table>
+</div>

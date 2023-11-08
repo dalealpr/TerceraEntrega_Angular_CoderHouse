@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,body{ height: 100%; width: 100%; padding: 0; margin: 0; }
+
+// Colores
+:root {
+    --primary: #07f468;
+    --bg-primary: #3f51b5;
+    --bg-secondary: #161616;
+    --bg-tertiary: #22262b;
+  }
+
+body { margin: 0; font-family:'Roboto', sans-serif; background-color:var(--bg-primary) ;color: rgb(255, 255, 255); }
+
+

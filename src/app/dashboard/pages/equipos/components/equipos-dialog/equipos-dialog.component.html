@@ -1,0 +1,62 @@
+<div class="dialogCont">
+  <h1 mat-dialog-title style="text-align: center; font-size: 27px">
+    {{ isEditing ? "Editar equipo" : "Crear equipo" }}
+  </h1>
+
+  <div mat-dialog-content>
+    <!-- Contenido... -->
+
+    <form [formGroup]="equipoForm">
+      <div class="row" style="padding: 10px">
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" type="text" matInput />
+            <mat-error>
+              {{ equipoForm.get("nombre")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>División</mat-label>
+            <input formControlName="division" type="text" matInput />
+            <mat-error>
+              {{ equipoForm.get("division")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Liga</mat-label>
+            <input formControlName="liga" type="text" matInput />
+            <mat-error>
+              {{ equipoForm.get("liga")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" type="text" appearance="outline">
+            <mat-label>País</mat-label>
+            <input formControlName="pais" type="text" matInput />
+            <mat-error>
+              {{ equipoForm.get("pais")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="btnCont">
+    <button
+      class="btnDialog"
+      mat-dialog-close
+      (click)="closeDialog()"
+      mat-button
+    >
+      Cancelar
+    </button>
+    <button class="btnDialog" (click)="onSubmit()" mat-button>Guardar</button>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  <!-- Nombres -->
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+  </ng-container>
+
+  <!-- Nombres -->
+  <ng-container matColumnDef="Nombres">
+    <th mat-header-cell *matHeaderCellDef>Nombre y Apellido</th>
+    <td mat-cell *matCellDef="let user">{{ user | fullname : "lowercase" }}</td>
+  </ng-container>
+
+  <!-- Email -->
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+
+    <td mat-cell *matCellDef="let user">
+      <!-- Btn ver -->
+      <button mat-icon-button (click)="goToDetail(user.id)" color="accent">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <!-- Btn editar -->
+      <button mat-icon-button (click)="editUser.emit(user.id)" color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <!-- Btn borrar -->
+      <button
+        mat-icon-button
+        (click)="deleteUser.emit(user.id)"
+        color="secondary"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

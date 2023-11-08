@@ -1,0 +1,54 @@
+<div class="dialogCont">
+  <h1 mat-dialog-title style="text-align: center; font-size: 27px">
+    {{ isEditing ? "Editar usuario" : "Crear usuario" }}
+  </h1>
+
+  <div mat-dialog-content>
+    <!-- Contenido... -->
+    <form [formGroup]="userForm">
+      <div class="row" style="padding: 10px">
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" type="text" matInput />
+            <mat-error>
+              {{ userForm.get("nombre")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input formControlName="apellido" type="text" matInput />
+            <mat-error>
+              {{ userForm.get("apellido")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" type="email" matInput />
+            <mat-error>
+              {{ userForm.get("email")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="btnCont">
+    <button
+      class="btnDialog"
+      mat-dialog-close
+      (click)="closeDialog()"
+      mat-button
+    >
+      Cancelar
+    </button>
+    <button class="btnDialog" (click)="onSubmit()" mat-button>Guardar</button>
+  </div>
+</div>

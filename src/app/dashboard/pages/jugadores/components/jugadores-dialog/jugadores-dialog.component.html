@@ -1,0 +1,80 @@
+<div class="dialogCont">
+  <h1 mat-dialog-title style="text-align: center; font-size: 27px">
+    {{ isEditing ? "Editar Jugador" : "Crear Jugador" }}
+  </h1>
+
+  <div mat-dialog-content>
+    <!-- Contenido... -->
+
+    <form [formGroup]="jugadorForm">
+      <div class="row" style="padding: 10px">
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" type="text" matInput />
+            <mat-error>
+              {{ jugadorForm.get("nombre")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input formControlName="apellido" type="text" matInput />
+            <mat-error>
+              {{ jugadorForm.get("apellido")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input formControlName="edad" type="number" matInput />
+            <mat-error>
+              {{ jugadorForm.get("edad")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" type="text" appearance="outline">
+            <mat-label>Nacionalidad</mat-label>
+            <input formControlName="nacionalidad" type="text" matInput />
+            <mat-error>
+              {{ jugadorForm.get("nacionalidad")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Equipo</mat-label>
+            <input formControlName="equipo" type="text" matInput />
+            <mat-error>
+              {{ jugadorForm.get("equipo")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Posición</mat-label>
+            <input formControlName="posicion" matInput />
+            <mat-error>
+              {{ jugadorForm.get("posicion")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="btnCont">
+    <button
+      class="btnDialog"
+      mat-dialog-close
+      (click)="closeDialog()"
+      mat-button
+    >
+      Cancelar
+    </button>
+    <button class="btnDialog" (click)="onSubmit()" mat-button>Guardar</button>
+  </div>
+</div>

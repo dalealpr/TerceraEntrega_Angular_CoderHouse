@@ -1,0 +1,14 @@
+<div class="contEquipos">
+  <h1 class="title">EQUIPOS</h1>
+
+  <button class="btnAdd" (click)="addEquipo()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>
+    Agregar Equipo
+  </button>
+
+  <app-equipos-table
+    [dataSource]="(equipos$ | async) || []"
+    (editEquipo)="onEditEquipo($event)"
+    (deleteEquipo)="onDeleteEquipo($event)"
+  ></app-equipos-table>
+</div>

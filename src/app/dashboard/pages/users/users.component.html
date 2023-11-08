@@ -1,0 +1,14 @@
+<div class="contUsuarios">
+  <h1 class="title">USUARIOS</h1>
+  <button class="btnAdd" mat-flat-button color="primary" (click)="addUser()">
+    <mat-icon>add</mat-icon>
+    Agregar Usuario
+  </button>
+
+  <app-users-table
+    [dataSource]="(usuarios$ | async) || []"
+    (editUser)="onEditUser($event)"
+    (deleteUser)="onDeleteUser($event)"
+    class="tableComponent"
+  ></app-users-table>
+</div>

@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nombre": "David",
+      "apellido": "Leal",
+      "email": "david@mail.com",
+      "token": "asdfghjkl123456",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "email": "juan@mail.com",
+      "token": "asdfghjkl123456",
+      "role": "USER"
+    },
+    {
+      "id": 3,
+      "nombre": "Pedro",
+      "apellido": "Ramirez",
+      "email": "pedro@mail.com",
+      "token": "asdfghjkl123456",
+      "role": "USER"
+    },
+    {
+      "id": 4,
+      "nombre": "admin",
+      "apellido": "admin",
+      "email": "fake@mail.com",
+      "password": "123654",
+      "token": "asdfghjkl123456",
+      "role": "ADMIN"
+    }
+  ],
+  "jugadores": [
+    {
+      "id": 1001,
+      "nombre": "Lionel",
+      "apellido": "Messi",
+      "edad": 36,
+      "nacionalidad": "Argentino",
+      "equipo": "Inter Miami CF",
+      "posicion": "Delantero"
+    },
+    {
+      "id": 1002,
+      "nombre": "Cristiano Ronaldo",
+      "apellido": "dos Santos",
+      "edad": 38,
+      "nacionalidad": "Portugues",
+      "equipo": "Al-Nassr",
+      "posicion": "Delantero"
+    },
+    {
+      "id": 1003,
+      "nombre": "Kylian",
+      "apellido": "Mbappé",
+      "edad": 24,
+      "nacionalidad": "Frances",
+      "equipo": "París Saint-Germain",
+      "posicion": "Delantero"
+    },
+    {
+      "id": 1004,
+      "nombre": "Erling",
+      "apellido": "Haaland",
+      "edad": 21,
+      "nacionalidad": "Noruego",
+      "equipo": "Manchester City",
+      "posicion": "Delantero"
+    },
+    {
+      "id": 1005,
+      "nombre": "Neymar",
+      "apellido": "Santos",
+      "edad": 31,
+      "nacionalidad": "Brasileño",
+      "equipo": "Al-Hilal FC",
+      "posicion": "Delantero"
+    }
+  ],
+  "equipos": [
+    {
+      "id": 1,
+      "nombre": "Real Madrid",
+      "division": "Primera Division",
+      "liga": "LaLiga",
+      "pais": "Espana"
+    },
+    {
+      "id": 2,
+      "nombre": "Barcelona",
+      "division": "Primera Division",
+      "liga": "LaLiga",
+      "pais": "Espana"
+    },
+    {
+      "id": 3,
+      "nombre": "Liverpool",
+      "division": "Primera Division",
+      "liga": "Premier League",
+      "pais": "Inglaterra"
+    },
+    {
+      "id": 4,
+      "nombre": "Manchester City",
+      "division": "Primera Division",
+      "liga": "Premier League",
+      "pais": "Inglaterra"
+    }
+  ]
+}
