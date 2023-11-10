@@ -14,6 +14,7 @@ export class UsersService {
       email: 'david@mail.com',
       token: 'asdfghjkl123456',
       role: 'ADMIN',
+      password: '00000',
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ export class UsersService {
       email: 'juan@mail.com',
       token: 'asdfghjkl123456',
       role: 'USER',
+      password: '00000',
     },
     {
       id: 3,
@@ -30,6 +32,7 @@ export class UsersService {
       email: 'pedro@mail.com',
       token: 'asdfghjkl123456',
       role: 'USER',
+      password: '00000',
     },
   ];
 

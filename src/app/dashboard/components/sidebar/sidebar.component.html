@@ -1,4 +1,10 @@
 <div class="sidebarCont">
+  <div class="contUser">
+    <p class="pUser">Bienvenido {{ fullName$ | async }}</p>
+    <p class="pUser">
+      {{ email$ | async }}
+    </p>
+  </div>
   <mat-nav-list>
     <mat-list-item [activated]="true" class="listItem" routerLink="home">
       <a matListItemTitle class="item">

@@ -44,6 +44,7 @@ export class UsersComponent {
               email: result.email,
               token: result.token,
               role: result.token,
+              password: result.password,
             });
             this.n++;
           }
