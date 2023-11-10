@@ -36,6 +36,26 @@
             </mat-error>
           </mat-form-field>
         </div>
+
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Rol</mat-label>
+            <input formControlName="role" type="role" matInput />
+            <mat-error>
+              {{ userForm.get("role")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6 inputCont">
+          <mat-form-field class="d-block" appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" type="password" matInput />
+            <mat-error>
+              {{ userForm.get("password")?.errors | formError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </form>
   </div>

@@ -6,22 +6,46 @@
     </p>
   </div>
   <mat-nav-list>
-    <mat-list-item [activated]="true" class="listItem" routerLink="home">
+    <mat-list-item
+      class="listItem"
+      routerLinkActive
+      #homeLink="routerLinkActive"
+      routerLink="home"
+      [activated]="homeLink.isActive"
+    >
       <a matListItemTitle class="item">
         <mat-icon class="icon" fontIcon="home"></mat-icon>Home</a
       >
     </mat-list-item>
-    <mat-list-item class="listItem" routerLink="usuarios">
+    <mat-list-item
+      class="listItem"
+      routerLinkActive
+      #usuariosLink="routerLinkActive"
+      routerLink="usuarios"
+      [activated]="usuariosLink.isActive"
+    >
       <a matListItemTitle class="item"
         ><mat-icon class="icon" fontIcon="person"></mat-icon>Usuarios</a
       >
     </mat-list-item>
-    <mat-list-item class="listItem" routerLink="jugadores">
+    <mat-list-item
+      class="listItem"
+      routerLinkActive
+      #jugadoresLink="routerLinkActive"
+      routerLink="jugadores"
+      [activated]="jugadoresLink.isActive"
+    >
       <a matListItemTitle class="item"
         ><mat-icon class="icon" fontIcon="sports_soccer"></mat-icon>Jugadores</a
       >
     </mat-list-item>
-    <mat-list-item class="listItem" routerLink="equipos">
+    <mat-list-item
+      class="listItem"
+      routerLink="equipos"
+      routerLinkActive
+      #equiposLink="routerLinkActive"
+      [activated]="equiposLink.isActive"
+    >
       <a matListItemTitle class="item"
         ><mat-icon class="icon" fontIcon="groups"></mat-icon>Equipos</a
       >

@@ -1,67 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, concatMap } from 'rxjs';
 import { User } from '../users/interfaces/users';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  usuarios: User[] = [
-    {
-      id: 1,
-      nombre: 'David',
-      apellido: 'Leal',
-      email: 'david@mail.com',
-      token: 'asdfghjkl123456',
-      role: 'ADMIN',
-      password: '00000',
-    },
-    {
-      id: 2,
-      nombre: 'Juan',
-      apellido: 'Perez',
-      email: 'juan@mail.com',
-      token: 'asdfghjkl123456',
-      role: 'USER',
-      password: '00000',
-    },
-    {
-      id: 3,
-      nombre: 'Pedro',
-      apellido: 'Ramirez',
-      email: 'pedro@mail.com',
-      token: 'asdfghjkl123456',
-      role: 'USER',
-      password: '00000',
-    },
-  ];
+  constructor(private httpClient: HttpClient) {}
 
   // Mostrar jugadores
   getUsers$(): Observable<User[]> {
-    return of(this.usuarios);
+    return this.httpClient.get<User[]>(`${environment.baseUrl}users`);
   }
-  // Crear nuevo jugador
+  // Crear nuevo Usuario
   createUser$(payload: User): Observable<User[]> {
-    this.usuarios.push(payload);
-    return of([...this.usuarios]);
+    return this.httpClient
+      .post<User>(`${environment.baseUrl}users`, payload)
+      .pipe(concatMap(() => this.getUsers$()));
   }
 
-  // Editar jugador
-  editUser$(id: number, payload: User): Observable<User[]> {
-    this.usuarios = this.usuarios.map((usuario) =>
-      usuario.id === id ? { ...usuario, ...payload } : usuario
-    );
-    return of(this.usuarios);
+  // Editar Usuario
+  editUser$(userId: number, payload: User): Observable<User[]> {
+    return this.httpClient
+      .put<User>(`${environment.baseUrl}users/${userId}`, payload)
+      .pipe(concatMap(() => this.getUsers$()));
   }
 
-  //Eliminar jugador
-  deleteUser$(id: number): Observable<User[]> {
-    this.usuarios = this.usuarios.filter((usuario) => usuario.id !== id);
-    return of(this.usuarios);
+  //Eliminar Usuario
+  deleteUser$(userId: number): Observable<User[]> {
+    return this.httpClient
+      .delete<User>(`${environment.baseUrl}users/${userId}`)
+      .pipe(concatMap(() => this.getUsers$()));
   }
 
-  // Encontrar jugador mediante Id
+  // Encontrar Usuario mediante Id
   getUserById$(id: number): Observable<User | undefined> {
-    return of(this.usuarios.find((usuario) => usuario.id === id));
+    return this.httpClient.get<User>(`${environment.baseUrl}users/${id}`);
   }
 }

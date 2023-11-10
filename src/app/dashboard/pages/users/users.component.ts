@@ -5,6 +5,8 @@ import { User } from './interfaces/users';
 import { Observable } from 'rxjs';
 import { UsersDialogComponent } from './components/users-dialog/users-dialog.component';
 import { NotifierService } from '../services/notifier.service';
+import { HttpClient } from '@angular/common/http';
+import { generarStringRandom } from 'src/app/shared/helpers/token';
 
 @Component({
   selector: 'app-users',
@@ -13,6 +15,7 @@ import { NotifierService } from '../services/notifier.service';
 })
 export class UsersComponent {
   n: number = 0;
+  token: string = generarStringRandom(10);
   usuarios$: Observable<User[]>;
 
   constructor(
@@ -24,28 +27,21 @@ export class UsersComponent {
     this.usuarios$ = this.userService.getUsers$();
   }
 
-  //METODO AGREGAR USUARIO
+  //METODO CREAR USUARIO
   addUser(): void {
     // Dialog
     this.matDialog
       .open(UsersDialogComponent, {
-        height: '420px',
+        height: '520px',
         width: '700px',
       })
       .afterClosed()
       // suscripción
       .subscribe({
         next: (result) => {
-          if (result) {
-            this.usuarios$ = this.userService.createUser$({
-              id: 4 + this.n,
-              nombre: result.nombre,
-              apellido: result.apellido,
-              email: result.email,
-              token: result.token,
-              role: result.token,
-              password: result.password,
-            });
+          if (!!result) {
+            result.token = this.token;
+            this.usuarios$ = this.userService.createUser$(result);
             this.n++;
           }
         },
@@ -67,7 +63,7 @@ export class UsersComponent {
     this.matDialog
       .open(UsersDialogComponent, {
         data: userId,
-        height: '420px',
+        height: '520px',
         width: '700px',
       })
       .afterClosed()

@@ -24,6 +24,8 @@ export class UsersDialogComponent {
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
 
     if (this.usuarioId) {
