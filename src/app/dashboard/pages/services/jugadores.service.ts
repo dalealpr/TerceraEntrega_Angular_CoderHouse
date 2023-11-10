@@ -1,85 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Jugador } from '../jugadores/interfaces/jugador';
-import { Observable, of } from 'rxjs';
+import { Observable, concatMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JugadoresService {
-  jugadores: Jugador[] = [
-    {
-      id: 1001,
-      nombre: 'Lionel',
-      apellido: 'Messi',
-      edad: 36,
-      nacionalidad: 'Argentino',
-      equipo: 'Inter Miami CF',
-      posicion: 'Delantero',
-    },
-    {
-      id: 1002,
-      nombre: 'Cristiano Ronaldo',
-      apellido: 'dos Santos',
-      edad: 38,
-      nacionalidad: 'Portugues',
-      equipo: 'Al-Nassr',
-      posicion: 'Delantero',
-    },
-    {
-      id: 1003,
-      nombre: 'Kylian',
-      apellido: 'Mbappé',
-      edad: 24,
-      nacionalidad: 'Frances',
-      equipo: 'París Saint-Germain',
-      posicion: 'Delantero',
-    },
-    {
-      id: 1004,
-      nombre: 'Erling',
-      apellido: 'Haaland',
-      edad: 21,
-      nacionalidad: 'Noruego',
-      equipo: 'Manchester City',
-      posicion: 'Delantero',
-    },
-    {
-      id: 1005,
-      nombre: 'Neymar',
-      apellido: 'Santos ',
-      edad: 31,
-      nacionalidad: 'Brasileño',
-      equipo: 'Al-Hilal FC',
-      posicion: 'Delantero',
-    },
-  ];
-
+  constructor(private httpClient: HttpClient) {}
   // Mostrar jugadores
   getJugadores$(): Observable<Jugador[]> {
-    return of(this.jugadores);
+    return this.httpClient.get<Jugador[]>(`${environment.baseUrl}jugadores`);
   }
   // Crear nuevo jugador
   createJugador$(payload: Jugador): Observable<Jugador[]> {
-    this.jugadores.push(payload);
-    return of([...this.jugadores]);
+    return this.httpClient
+      .post<Jugador>(`${environment.baseUrl}jugadores`, payload)
+      .pipe(concatMap(() => this.getJugadores$()));
   }
 
   // Editar jugador
-  editJugador$(id: number, payload: Jugador): Observable<Jugador[]> {
-    this.jugadores = this.jugadores.map((jugador) =>
-      jugador.id === id ? { ...jugador, ...payload } : jugador
-    );
-    return of(this.jugadores);
+  editJugador$(JugadorId: number, payload: Jugador): Observable<Jugador[]> {
+    return this.httpClient
+      .put<Jugador>(`${environment.baseUrl}jugadores/${JugadorId}`, payload)
+      .pipe(concatMap(() => this.getJugadores$()));
   }
 
   //Eliminar jugador
-  deleteJugador$(id: number): Observable<Jugador[]> {
-    this.jugadores = this.jugadores.filter((jugador) => jugador.id !== id);
-    return of(this.jugadores);
+  deleteJugador$(JugadorId: number): Observable<Jugador[]> {
+    return this.httpClient
+      .delete<Jugador>(`${environment.baseUrl}jugadores/${JugadorId}`)
+      .pipe(concatMap(() => this.getJugadores$()));
   }
 
   // Encontrar jugador mediante Id
   getJugadorById$(id: number): Observable<Jugador | undefined> {
-    return of(this.jugadores.find((jugador) => jugador.id === id));
+    return this.httpClient.get<Jugador>(
+      `${environment.baseUrl}jugadores/${id}`
+    );
   }
 }

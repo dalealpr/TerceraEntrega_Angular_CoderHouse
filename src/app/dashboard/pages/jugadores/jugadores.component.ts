@@ -36,16 +36,8 @@ export class JugadoresComponent {
       // suscripción
       .subscribe({
         next: (result) => {
-          if (result) {
-            this.jugadores$ = this.jugadoresService.createJugador$({
-              id: 5 + this.n,
-              nombre: result.nombre,
-              apellido: result.apellido,
-              edad: result.edad,
-              nacionalidad: result.nacionalidad,
-              equipo: result.equipo,
-              posicion: result.posicion,
-            });
+          if (!!result) {
+            this.jugadores$ = this.jugadoresService.createJugador$(result);
             this.n++;
           }
         },

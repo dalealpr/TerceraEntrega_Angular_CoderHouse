@@ -1,69 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Equipo } from '../equipos/interfaces/equipo';
-import { Observable, of } from 'rxjs';
+import { Observable, concatMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EquiposService {
-  equipos: Equipo[] = [
-    {
-      id: 1,
-      nombre: 'Real Madrid',
-      division: 'Primera Division',
-      liga: 'LaLiga',
-      pais: 'Espana',
-    },
-    {
-      id: 2,
-      nombre: 'Barcelona',
-      division: 'Primera Division',
-      liga: 'LaLiga',
-      pais: 'Espana',
-    },
-    {
-      id: 3,
-      nombre: 'Liverpool',
-      division: 'Primera Division',
-      liga: 'Premier League',
-      pais: 'Inglaterra',
-    },
-    {
-      id: 4,
-      nombre: 'Manchester City',
-      division: 'Primera Division',
-      liga: 'Premier League',
-      pais: 'Inglaterra',
-    },
-  ];
-
+  constructor(private httpClient: HttpClient) {}
   // Mostrar equipos
   getEquipos$(): Observable<Equipo[]> {
-    return of(this.equipos);
+    return this.httpClient.get<Equipo[]>(`${environment.baseUrl}equipos`);
   }
 
   // Crear nuevo equipo
   createEquipo$(payload: Equipo): Observable<Equipo[]> {
-    this.equipos.push(payload);
-    return of([...this.equipos]);
+    return this.httpClient
+      .post<Equipo>(`${environment.baseUrl}equipos`, payload)
+      .pipe(concatMap(() => this.getEquipos$()));
   }
 
   // Editar Equipo
-  editEquipo$(id: number, payload: Equipo): Observable<Equipo[]> {
-    this.equipos = this.equipos.map((c) =>
-      c.id === id ? { ...c, ...payload } : c
-    );
-    return of(this.equipos);
+  editEquipo$(equipoId: number, payload: Equipo): Observable<Equipo[]> {
+    return this.httpClient
+      .put<Equipo>(`${environment.baseUrl}equipos/${equipoId}`, payload)
+      .pipe(concatMap(() => this.getEquipos$()));
   }
 
   //Eliminar equipo
-  deleteEquipo$(id: number): Observable<Equipo[]> {
-    this.equipos = this.equipos.filter((equipo) => equipo.id !== id);
-    return of(this.equipos);
+  deleteEquipo$(equipoId: number): Observable<Equipo[]> {
+    return this.httpClient
+      .delete<Equipo>(`${environment.baseUrl}equipos/${equipoId}`)
+      .pipe(concatMap(() => this.getEquipos$()));
   }
 
   // Encontrar equipo mediante Id
   getEquipoById$(id: number): Observable<Equipo | undefined> {
-    return of(this.equipos.find((equipo) => equipo.id === id));
+    return this.httpClient.get<Equipo>(`${environment.baseUrl}equipos/${id}`);
   }
 }

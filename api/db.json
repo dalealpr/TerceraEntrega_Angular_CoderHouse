@@ -55,15 +55,6 @@
       "nacionalidad": "Noruego",
       "equipo": "Manchester City",
       "posicion": "Delantero"
-    },
-    {
-      "id": 1005,
-      "nombre": "Neymar",
-      "apellido": "Santos",
-      "edad": 31,
-      "nacionalidad": "Brasileño",
-      "equipo": "Al-Hilal FC",
-      "posicion": "Delantero"
     }
   ],
   "equipos": [
@@ -82,18 +73,11 @@
       "pais": "Espana"
     },
     {
-      "id": 3,
-      "nombre": "Liverpool",
-      "division": "Primera Division",
-      "liga": "Premier League",
-      "pais": "Inglaterra"
-    },
-    {
-      "id": 4,
       "nombre": "Manchester City",
       "division": "Primera Division",
       "liga": "Premier League",
-      "pais": "Inglaterra"
+      "pais": "Inglaterra",
+      "id": 4
     }
   ]
 }

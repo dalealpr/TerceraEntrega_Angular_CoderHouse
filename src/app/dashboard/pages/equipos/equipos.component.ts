@@ -37,13 +37,7 @@ export class EquiposComponent {
       .subscribe({
         next: (result) => {
           if (result) {
-            this.equipos$ = this.equiposService.createEquipo$({
-              id: 5 + this.n,
-              nombre: result.nombre,
-              division: result.division,
-              liga: result.liga,
-              pais: result.pais,
-            });
+            this.equipos$ = this.equiposService.createEquipo$(result);
             this.n++;
           }
         },
