@@ -36,7 +36,9 @@ export class UsersService {
   }
 
   // Encontrar Usuario mediante Id
-  getUserById$(id: number): Observable<User | undefined> {
-    return this.httpClient.get<User>(`${environment.baseUrl}users/${id}`);
+  getUserById$(id: number): Observable<User[]> {
+    return this.httpClient
+      .get<User>(`${environment.baseUrl}users/${id}`)
+      .pipe(concatMap(() => this.getUsers$()));
   }
 }

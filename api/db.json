@@ -46,15 +46,6 @@
       "nacionalidad": "Frances",
       "equipo": "París Saint-Germain",
       "posicion": "Delantero"
-    },
-    {
-      "id": 1004,
-      "nombre": "Erling",
-      "apellido": "Haaland",
-      "edad": 21,
-      "nacionalidad": "Noruego",
-      "equipo": "Manchester City",
-      "posicion": "Delantero"
     }
   ],
   "equipos": [

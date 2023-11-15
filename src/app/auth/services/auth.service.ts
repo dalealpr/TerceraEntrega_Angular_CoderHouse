@@ -1,26 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from 'src/app/dashboard/pages/users/interfaces/users';
 import { environment } from 'src/environments/environment.local';
 import { LoginPayload } from '../interfaces/login';
 import { Router } from '@angular/router';
 import { NotifierService } from 'src/app/dashboard/pages/services/notifier.service';
+import { Store } from '@ngrx/store';
+import { AuthActions } from 'src/app/store/auth/auth.actions';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // almacenamiento user autenticado
-  private _authUser$ = new BehaviorSubject<User | null>(null);
-  public authUser$ = this._authUser$.asObservable();
+  public authUser$ = this.store.select(selectAuthUser);
 
   constructor(
     private httClient: HttpClient,
     private router: Router,
-    private notifService: NotifierService
+    private notifService: NotifierService,
+    private store: Store
   ) {}
 
+  private handleAuthUser(authUser: User) {
+    this.store.dispatch(AuthActions.setAuthUser({ data: authUser }));
+    localStorage.setItem('token', authUser.token);
+  }
   // Login
   login(payload: LoginPayload): void {
     this.httClient
@@ -37,8 +43,9 @@ export class AuthService {
             console.log('Error inicio de sesion');
           } else {
             const authUser = response[0];
-            this._authUser$.next(authUser);
-            localStorage.setItem('token', authUser.token);
+
+            this.handleAuthUser(authUser);
+
             this.router.navigate(['dashboard/home']);
             console.log('Inicio de sesion exitoso');
           }
@@ -60,8 +67,7 @@ export class AuthService {
             return false;
           } else {
             const authUser = users[0];
-            this._authUser$.next(authUser);
-            localStorage.setItem('token', authUser.token);
+            this.handleAuthUser(authUser);
             return true;
           }
         })
@@ -69,7 +75,7 @@ export class AuthService {
   }
   // Logout
   logout(): void {
-    this._authUser$.next(null);
+    this.store.dispatch(AuthActions.resetState());
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login']);
   }
