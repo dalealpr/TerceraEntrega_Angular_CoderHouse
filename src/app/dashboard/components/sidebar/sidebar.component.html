@@ -6,6 +6,7 @@
     </p>
   </div>
   <mat-nav-list>
+    <!-- Optimizar con un ngFor -->
     <mat-list-item
       class="listItem"
       routerLinkActive
@@ -18,6 +19,7 @@
       >
     </mat-list-item>
     <mat-list-item
+      *ngIf="(userRole$ | async) === 'ADMIN'"
       class="listItem"
       routerLinkActive
       #usuariosLink="routerLinkActive"
@@ -50,12 +52,14 @@
         ><mat-icon class="icon" fontIcon="groups"></mat-icon>Equipos</a
       >
     </mat-list-item>
-    <mat-list-item class="listItem">
-      <a matListItemTitle class="item"
-        ><mat-icon class="icon" fontIcon="flag"></mat-icon>Países</a
-      >
-    </mat-list-item>
-    <mat-list-item class="listItem">
+
+    <mat-list-item
+      class="listItem"
+      routerLink="enrollments"
+      routerLinkActive
+      #enrollmentsLink="routerLinkActive"
+      [activated]="enrollmentsLink.isActive"
+    >
       <a matListItemTitle class="item"
         ><mat-icon class="icon" fontIcon="person_add"></mat-icon
         >Inscripciones</a

@@ -1,6 +1,10 @@
 // SIDE_VAR
 .example-container {
   height: 100vh;
+  background-image: url("../../assets/campofutbol.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .sideNav{
@@ -8,13 +12,33 @@
 
 }
 
- main{
-  width: 70%;
-  margin: 0 auto;
+.mainCont{
+  margin-top: 70px;
 
-  .title{
-    text-align: center;
-    margin: 50px 0;
-    font-weight: 700;
-  }
+  main{
+   width: 70%;
+   margin: 0 auto;
+   padding: 20px 50px 100px 50px;
+   background-color: #1e1c2d;
+   border-radius: 15px;
+  
+   .title{
+     text-align: center;
+     margin: 50px 0;
+     font-weight: 700;
+   }
+}
+
+}
+
+.mat-drawer-side {
+
+  border-right-style: none; 
+}
+
+
+th {
+  font-size: 18px;
+  color: white;
+  border-bottom: 5px solid #07f162;
 }

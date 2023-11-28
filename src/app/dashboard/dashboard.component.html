@@ -15,9 +15,11 @@
     <!-- TOOLBAR COMPONENT -->
     <app-toolbar (toggleSidebar)="showSidebar = !showSidebar"></app-toolbar>
 
-    <!-- MAIN -->
-    <main>
-      <router-outlet></router-outlet>
-    </main>
+    <div class="mainCont">
+      <!-- MAIN -->
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   </div>
 </mat-drawer-container>

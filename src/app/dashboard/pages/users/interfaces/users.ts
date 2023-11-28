@@ -4,6 +4,6 @@ export interface User {
   apellido: string;
   email: string;
   token: string;
-  role: string;
+  role: 'ADMIN' | 'EMPLOYEE';
   password: string;
 }

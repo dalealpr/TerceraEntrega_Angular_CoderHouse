@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('LoginComponent', () => {
   let loginComponent: LoginComponent;
@@ -11,6 +12,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [HttpClientTestingModule, SharedModule],
+      providers: [provideMockStore({})],
     });
     loginComponent = TestBed.createComponent(LoginComponent).componentInstance;
   });

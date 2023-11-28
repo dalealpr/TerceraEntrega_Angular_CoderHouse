@@ -1,35 +1,66 @@
 .sidebarCont{
-
+    background-color: #151420;
+    height: 100vh;
+    border-right-color: none;
     .listItem{
-        padding-left: 30px;
+        padding: none;
+
        
         .item{
+            width: 100%;
+            height: 100%;
             font-weight: 700;
             font-size: 16px;
             display: flex;
             align-items:center ;
+            padding-left: 20px;
 
             .icon{
                 font-size: 24px;
                 margin-right: 15px;
             }
         }
+        .item:hover{
+            color:#ffffff;
+        }
+    }
+    .listItem:hover{
+        color: none;
+        background-color: none;
     }
 
     .contUser{
-        color: white;
-        background-color: rgb(62, 62, 62);
+        color: rgb(30, 30, 30);
+        background-color: #08f36a;
         text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 12px;
+        padding: 10px 10px;
 
         .pUser{
-            display: flex;
-            justify-content: center;
-
+            margin-left: 20px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0px;
+            padding: 10px;
         }
     }
+
+
     
+}
+
+.mdc-list-item__primary-text {
+    color: rgb(208, 208, 208);
+  }
+
+  .mat-mdc-list-base.mat-mdc-list-base .mdc-list-item--selected .mdc-list-item__primary-text, .mat-mdc-list-base.mat-mdc-list-base .mdc-list-item--activated .mdc-list-item__primary-text {
+    color: #00ff6a;
+}
+
+.mdc-list-item {
+    padding: 0px;
+    display: block;
 }

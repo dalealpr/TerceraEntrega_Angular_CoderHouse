@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { User } from '../../pages/users/interfaces/users';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Store } from '@ngrx/store';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,8 +13,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class SidebarComponent {
   public authUser$: Observable<User | null>;
 
-  constructor(private authService: AuthService) {
+  userRole$: Observable<'ADMIN' | 'EMPLOYEE' | undefined>;
+
+  constructor(private authService: AuthService, private store: Store) {
     this.authUser$ = this.authService.authUser$;
+    this.userRole$ = this.store
+      .select(selectAuthUser)
+      .pipe(map((u) => u?.role));
   }
 
   // traer nombre User
